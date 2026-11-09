@@ -1,0 +1,33 @@
+name: Build and tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  swift:
+    name: Swift tests and consumer build
+    runs-on: xcode-27
+    timeout-minutes: 20
+    steps:
+      - name: Check out source
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Show toolchain
+        run: |
+          xcodebuild -version
+          swift --version
+      - name: Test transfer core
+        run: swift test --disable-sandbox
+      - name: Compile consumer app without packaging a driver
+        run: swift build -c release --product Harbor --disable-sandbox
+      - name: Check script syntax
+        run: |
+          bash -n scripts/build-app.sh
+          python3 -m py_compile scripts/include-ntfs-provider.py scripts/prepare-public-source.py

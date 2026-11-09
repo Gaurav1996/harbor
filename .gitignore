@@ -1,0 +1,18 @@
+.build/
+dist/
+.integration/
+.vendor/
+.DS_Store
+Transfer records/
+SETUP-STATUS.md
+scripts/audit-photo-transfer.py
+scripts/trash-verified-photos.swift
+scripts/trash-transfer-tools.swift
+.publication/
+__pycache__/
+*.p12
+*.mobileprovision
+*.provisionprofile
+*.p8
+.env
+.env.*

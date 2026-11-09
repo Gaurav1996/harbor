@@ -1,0 +1,42 @@
+name: Bug report
+description: Report a reproducible Harbor problem using synthetic files.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "For vulnerabilities use Security → Report a vulnerability. Do not attach personal files, receipts, disk identifiers or unredacted logs."
+  - type: input
+    id: environment
+    attributes:
+      label: macOS and Harbor version
+      description: Include the macOS version, Harbor version/source revision and whether this is a local build.
+    validations:
+      required: true
+  - type: dropdown
+    id: stage
+    attributes:
+      label: Where did it happen?
+      options:
+        - Selecting files or destination
+        - NTFS setup or read-only drive
+        - Copying or verification
+        - Moving originals to Trash
+        - Ejecting
+        - Building from source
+        - Something else
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Use a small synthetic example and describe the destination filesystem. Avoid personal filenames.
+    validations:
+      required: true
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Expected and observed behavior
+      description: Include a redacted error message when available. Do not paste full transfer reports.
+    validations:
+      required: true
