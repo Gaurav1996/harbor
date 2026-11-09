@@ -20,7 +20,7 @@ source-code publication are different activities. HARBOR_PUBLIC_RELEASE=1 is
 refused by the build until maintainers deliberately resolve this gate.
 
 Run scripts/prepare-public-source.py to prepare the explicit allowlisted original
-source tree under .publication/Harbor-0.3.0-beta.1-source. It rejects symlinks, binary
+source tree under .publication/Harbor-source-candidate. It rejects symlinks, binary
 content, machine home paths and common token/private-key patterns and writes a
 SHA-256 manifest without replacing an existing candidate. Review the exact tree;
 a scan is not proof of privacy. Do not upload the working directory or private
@@ -34,3 +34,12 @@ actual downloaded artifact. Harbor is currently sandboxed/ad-hoc signed, not
 notarized. Never promise warning-free downloads or zero macOS authorizations.
 Retained legacy NTFS-3G/macFUSE experiments retain their separate licensing and
 are excluded from the consumer app.
+
+## Source verification update, 10 November 2026
+
+The complete public source archive was checked against all 343 tracked files and
+its static core built successfully. Build/history counts and all 255 named global
+NTFS C symbols have corroborating public source. The embedded commit still needs
+an authoritative explanation; this is not an accusation of noncompliance or a
+requirement for byte-identical signed builds. The app draft remains unpublished.
+See [the full audit](DRIVER-SOURCE-VERIFICATION.md).

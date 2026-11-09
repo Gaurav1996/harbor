@@ -1,7 +1,7 @@
 <p align="center"><img src="docs/assets/harbor.svg" width="112" alt="Harbor"></p>
 
 <h1 align="center">Harbor</h1>
-<p align="center">A safe landing for your files.</p>
+<p align="center"><strong>Copy files to NTFS drives on your Mac. Verify every file.</strong></p>
 <p align="center">
   <a href="https://github.com/Gaurav1996/harbor/actions/workflows/ci.yml"><img src="https://github.com/Gaurav1996/harbor/actions/workflows/ci.yml/badge.svg" alt="Build and tests"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/Harbor-MIT-24665a" alt="Harbor code: MIT"></a>
@@ -9,15 +9,33 @@
   <img src="https://img.shields.io/badge/Apple_Silicon-arm64-555555" alt="Apple Silicon">
 </p>
 
-Harbor is a native macOS app for copying files and folders to an external drive,
-checking every file, and optionally moving the originals to Mac Trash after a
-fresh verification. Choose your items, choose a destination, and **Copy & verify**.
-The originals stay in place by default.
+Your Mac can read your NTFS external drive, but will not let you copy files onto
+it? **That is the main problem Harbor is built to solve.**
+
+Harbor combines NTFS writing support with verified transfers, so you can copy
+files and folders from a Mac to a supported NTFS drive **without reformatting it**.
+Choose your items, choose a destination, and **Copy & verify**. Every copied file
+is checked, and the originals stay in place unless you separately choose to move
+them to Mac Trash. It also works with already-writable external filesystems.
 
 > **Early source beta.** The source is public; there is no public Harbor app
 > download yet. The working local candidate includes an independently signed
 > NTFS component, whose corresponding-source identity remains under verification.
-> Its combined binary is held from public distribution. See [release status](docs/OPEN-SOURCE.md).
+> Its combined binary is held from public distribution. See [release status](docs/OPEN-SOURCE.md) and the
+> [driver source audit](docs/DRIVER-SOURCE-VERIFICATION.md).
+
+## Why an NTFS drive looks read-only on a Mac
+
+NTFS is a filesystem, not an inherently read-only file format. macOS’s built-in
+NTFS support normally lets you read existing files without providing ordinary
+write access. [Apple describes this limitation](https://support.apple.com/101830).
+Harbor’s local candidate supplies that missing writing capability
+through the included, independently signed TT NTFS Native FSKit component.
+You approve the component in macOS Settings; Harbor handles its preparation.
+
+This addresses the normal macOS NTFS write-support limitation. A damaged,
+hibernated, write-protected or otherwise unsupported volume may still need to
+stay read-only. Harbor does not bypass those protections or repair the disk.
 
 ## What it does
 

@@ -24,7 +24,7 @@ FILES = (
     "scripts/setup-ntfs.sh", "scripts/test-ntfs-image.py",
     "scripts/prepare-public-source.py", "docs/PRODUCT-DESIGN.md",
     "docs/LEARNINGS.md", "docs/OPEN-SOURCE.md", "docs/USER-GUIDE.md",
-    "docs/IMPLEMENTATION-STATUS.md",
+    "docs/IMPLEMENTATION-STATUS.md", "docs/DRIVER-SOURCE-VERIFICATION.md",
 )
 RULES = (
     ("machine home path", re.compile(r"/Users/[A-Za-z0-9_.-]+/")),
@@ -33,7 +33,7 @@ RULES = (
 )
 
 def main():
-    target = ROOT / ".publication" / "Harbor-0.3.0-beta.1-source"
+    target = ROOT / ".publication" / "Harbor-source-candidate"
     if target.exists() or target.is_symlink():
         raise SystemExit("Candidate already exists. Review it before preparing a new one.")
     if target.parent.is_symlink():
