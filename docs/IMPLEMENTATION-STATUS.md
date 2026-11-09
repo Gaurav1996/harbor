@@ -1,6 +1,7 @@
 # Harbor 0.3.0 validation
 
-10 November 2026. Source beta approved for publication; combined app binary held.
+10 November 2026. Early app beta approved for publication with upstream-designated
+driver source/notices included and the independent provenance gap disclosed.
 
 ## Changes addressing acceptance feedback
 
@@ -49,9 +50,10 @@ Ordinary readback is not a hardware-cache/power-loss durability guarantee.
 The bundled component has a verified vendor Developer ID signature (team
 HU5S996C2K), matching official DMG checksum, and accepted Gatekeeper assessment.
 However, its embedded source identity could not be matched to the public v0.4.1
-tag. Private local inclusion is not public redistribution clearance. Public
-binary release stays blocked pending complete corresponding-source verification.
-The public-release build flag is refused. Never publish this candidate ZIP.
+tag. The public beta includes the complete source designated by upstream for
+that release and preserves the unresolved independent-provenance question.
+The builder requires the pinned source archive and notices as packaging inputs.
+No confirmed source-to-binary identity or production-security claim is made.
 
 Harbor itself is ad-hoc signed and sandboxed, not Developer ID-signed/notarized.
 The candidate requires Apple Silicon/macOS 26+, matching the included provider's
@@ -59,8 +61,9 @@ minimum. Clean-machine/older-OS coverage, physical disposable-media acceptance,
 large transfers, power-loss tests, signed updates and update policy remain release
 validation. No own Harbor FSKit module or resumability is implemented.
 
-The source-only beta is approved for publication. The combined app is not.
-Private receipts, images and vendor downloads remain excluded from source export.
+The app beta and source are approved for publication. Personal receipts, images,
+credentials and local vendor caches remain excluded from the source repository.
+Third-party source/notices accompany the app as separate release material.
 
 ## Physical-drive acceptance feedback, 10 November 2026
 
@@ -73,3 +76,11 @@ was used. This documents one configuration, not general hardware validation.
 The first-use readiness gap is now described in the guide and README; its fully
 guided in-app handling remains open work. No private paths or drive IDs are
 included in the public evidence.
+
+## Public beta packaging
+
+Beta 2 retains the tested executable code and unchanged vendor component; changes
+are packaging, source/notices, provenance, version metadata and documentation.
+The provider release-tag archive is included inside the app and alongside its
+download. The source-identity flag remains false. Signatures, mandatory source
+contents, package roundtrip and checksums are checked before publishing.

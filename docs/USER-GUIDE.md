@@ -37,8 +37,9 @@ Keep dirty or hibernated volumes read-only; do not force recovery for a transfer
 
 Harbor includes the unmodified, independently signed TT NTFS Native 0.4.1 component
 by TechTag GmbH. Its GPL v2 license, notices and provenance are included in the
-app. This is a private acceptance candidate; public distribution is still held
-for corresponding-source verification and release validation.
+app, together with the complete source archive designated by upstream for this
+release. This is an early public beta. Its embedded build-ID mismatch remains
+documented; independent source-to-binary identity is not confirmed.
 
 ## Remembered access and interrupted work
 
@@ -59,7 +60,7 @@ ACLs, all extended attributes and hard-link relationships are not preserved.
 Checksum readback cannot prove a hardware cache will survive a power cut. Keep
 another backup of irreplaceable files.
 
-Harbor 0.3 requires Apple Silicon and macOS 26 or later. This local Harbor build
+Harbor 0.3 requires Apple Silicon and macOS 26 or later. This Harbor beta
 is sandboxed and ad-hoc signed, not Developer ID-signed or notarized. The bundled
 component retains its separate vendor signature. Downloaded Harbor builds can
 show first-open warnings; GitHub hosting does not remove signing requirements.

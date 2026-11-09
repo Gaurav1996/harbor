@@ -15,10 +15,15 @@ and FSKit profile are preserved; Harbor does not sign the extension as its own.
 The official DMG checksum, release URL, vendor team and observed source-identity
 mismatch are recorded in NTFS-PROVENANCE.json inside the app.
 
-PRIVATE ACCEPTANCE CANDIDATE ONLY. The binary's embedded TTGitCommit could not be
-matched to the public release-tag source. Do not publicly redistribute this
-combined binary until complete corresponding-source verification is resolved.
-An upstream source link is not asserted to satisfy that requirement.
+The app includes upstream's complete v0.4.1 source archive, LICENSE and COPYRIGHT
+under Contents/Resources/ThirdParty, including its interfaces and build scripts.
+The release also offers these alongside the app. Source commit:
+3891dcbb5eebce1baff5c8fe5aee3c00ff11df9e.
+
+Upstream designates its public repository as the release source. Its binary's
+embedded commit differs from the public tag and has not been explained yet.
+Independent source-to-binary identity is not confirmed; see
+https://github.com/dr-kbadawi/ttntfs/issues/5. The beta does not claim otherwise.
 
 ## Retained legacy developer tooling
 

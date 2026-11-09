@@ -33,7 +33,7 @@ RULES = (
 )
 
 def main():
-    target = ROOT / ".publication" / "Harbor-source-candidate"
+    target = ROOT / ".publication" / "Harbor-0.3.0-beta.2-source"
     if target.exists() or target.is_symlink():
         raise SystemExit("Candidate already exists. Review it before preparing a new one.")
     if target.parent.is_symlink():

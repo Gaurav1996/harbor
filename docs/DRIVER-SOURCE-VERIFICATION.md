@@ -1,7 +1,8 @@
 # NTFS driver source verification
 
 10 November 2026. **Strong corroboration; source-to-binary identity is not yet confirmed.**
-The combined app release remains an unpublished maintainer draft. This report does
+The early app beta carries the source archive designated by upstream. Its
+independent source-to-binary identity remains unconfirmed. This report does
 not allege an upstream license violation. It records what was checked and what
 information is still missing.
 
@@ -75,7 +76,10 @@ patches used. A byte-for-byte signed/notarized rebuild is **not** the requiremen
 compiler versions, timestamps and signing can differ. The distinction is explained
 in the [GNU GPL FAQ](https://www.gnu.org/licenses/gpl-faq.en.html#MustSourceBuildToMatchExactHashOfBinary).
 
-Until that source identity is established, Harbor's public-binary build guard and
-unpublished app draft remain unchanged. Once established, preserve the full
-corresponding source and build materials beside the binary, include applicable
-licenses/notices, update provenance honestly, and complete distribution validation.
+The maintainer approved publishing an early beta using upstream's release source
+designation, with that complete archive, build materials and notices inside the
+app and beside the download. The independent-verification flag stays false, and
+[upstream clarification](https://github.com/dr-kbadawi/ttntfs/issues/5) is still
+pending. This release decision does not confirm the embedded hash's explanation
+or claim independent proof of source-to-binary identity. Distribution validation
+and provenance follow-up remain open work.

@@ -1,45 +1,47 @@
-# Publication preparation
+# Release and source status
 
-The source-only beta is published at https://github.com/Gaurav1996/harbor.
-The user has reported a successful physical-drive transfer. That acceptance does
-not clear the combined app binary for redistribution. Build/export scripts do
-not upload anything; publication is a separate maintainer action.
+Harbor's repository is public at https://github.com/Gaurav1996/harbor. The user
+approved publishing the app as an early beta with the upstream-designated driver
+source, notices and the unresolved provenance question disclosed.
 
-Harbor 0.3 addresses the consumer setup by including an unchanged, independently
-signed official TT NTFS Native bundle. Original Harbor sources remain MIT; the
-provider is separate GPL-2.0 code, never re-signed or claimed as Harbor's own
-extension. Pin/check its official DMG hash, signature, version and Gatekeeper
-assessment. The end-user app needs no downloader or separate installer.
+## Included third-party component
 
-PUBLIC BINARY REDISTRIBUTION IS BLOCKED. Its embedded TTGitCommit does not match
-the public release-tag source and could not be resolved in the public repository.
-Do not ship the combined binary publicly until complete corresponding source is
-established and the applicable notices/source/build materials are prepared.
-A source URL alone is not asserted to solve this. Private local testing and
-source-code publication are different activities. HARBOR_PUBLIC_RELEASE=1 is
-refused by the build until maintainers deliberately resolve this gate.
+TT NTFS Native 0.4.1 remains an unchanged, independently signed GPL-2.0 component.
+Harbor's own code is MIT licensed. The app carries the complete upstream release-
+tag source archive in `Contents/Resources/ThirdParty`, together with upstream's
+LICENSE, COPYRIGHT and source/build information. The same archive and notices
+are available beside the beta download. End users do not need to fetch a driver.
 
-Run scripts/prepare-public-source.py to prepare the explicit allowlisted original
-source tree under .publication/Harbor-source-candidate. It rejects symlinks, binary
-content, machine home paths and common token/private-key patterns and writes a
-SHA-256 manifest without replacing an existing candidate. Review the exact tree;
-a scan is not proof of privacy. Do not upload the working directory or private
-history wholesale. Exclude receipts, photos, setup history, vendor binaries,
-signing profiles, credentials, .integration and .build. Use only gh for Git work.
+The source commit is `3891dcbb5eebce1baff5c8fe5aee3c00ff11df9e`, tree
+`864515292bf94ee23f1ee5e9b97c927dde6bdb9a`. Its 343 tracked files were checked
+against the public tree, its static core compiled, and all 255 global NTFS C
+symbols in the shipped extension were accounted for in that core or bridge.
+Upstream's official release identifies its source as the public repository.
 
-Before a public release: establish the maintainer/reporting route, verify the
-exact source tree, test clean-machine installation/approval/disable/eject/update,
-use physical disposable media for hardware/interruption cases, and verify the
-actual downloaded artifact. Harbor is currently sandboxed/ad-hoc signed, not
-notarized. Never promise warning-free downloads or zero macOS authorizations.
-Retained legacy NTFS-3G/macFUSE experiments retain their separate licensing and
-are excluded from the consumer app.
+The embedded binary commit is still `v0.3-ui-fixes-112-gfc418d028`, which does not
+resolve publicly. Independent source-to-binary identity remains unconfirmed.
+[The audit](DRIVER-SOURCE-VERIFICATION.md) and
+[upstream question](https://github.com/dr-kbadawi/ttntfs/issues/5) remain open;
+publishing the beta does not convert this uncertainty into a verified match.
+Do not describe it as independently source-verified or as a security audit.
 
-## Source verification update, 10 November 2026
+## Build and publication
 
-The complete public source archive was checked against all 343 tracked files and
-its static core built successfully. Build/history counts and all 255 named global
-NTFS C symbols have corroborating public source. The embedded commit still needs
-an authoritative explanation; this is not an accusation of noncompliance or a
-requirement for byte-identical signed builds. The app draft remains unpublished.
-See [the full audit](DRIVER-SOURCE-VERIFICATION.md).
+The builder requires the exact pinned binary DMG and audited upstream source
+archive, checks their hashes, validates vendor signatures and Gatekeeper
+assessment, and includes source/notices with the app. It fails if source or
+notices are missing. `HARBOR_PUBLIC_RELEASE=1` uses this same mandatory-source
+packaging path. The old blanket publication guard has been replaced with these
+packaging requirements; the independent-verification flag stays false.
+
+Only publish an allowlisted source export and the reviewed app package. Never
+upload this working directory or local history wholesale. The exporter rejects
+symlinks, binary content, machine home paths and common credential signatures.
+Review the exact tree; a scan is not proof of privacy. Exclude personal receipts,
+photos, setup history, signing credentials, .integration and .build. Use gh for
+Git-related operations.
+
+Harbor is ad-hoc signed, not Developer ID-signed or notarized. The beta requires
+Apple Silicon and macOS 26+. Broad compatibility, clean-machine installation,
+signed updates and power-loss validation remain incomplete. No claim of a
+warning-free download or zero macOS approval prompts is made.

@@ -18,18 +18,32 @@ Choose your items, choose a destination, and **Copy & verify**. Every copied fil
 is checked, and the originals stay in place unless you separately choose to move
 them to Mac Trash. It also works with already-writable external filesystems.
 
-> **Early source beta.** The source is public; there is no public Harbor app
-> download yet. The working local candidate includes an independently signed
-> NTFS component, whose corresponding-source identity remains under verification.
-> Its combined binary is held from public distribution. See [release status](docs/OPEN-SOURCE.md) and the
-> [driver source audit](docs/DRIVER-SOURCE-VERIFICATION.md).
+> **Early app beta for Apple Silicon, macOS 26+.**
+> [Download Harbor](https://github.com/Gaurav1996/harbor/releases/tag/v0.3.0-beta.2).
+> The NTFS component is included—no separate driver download or compiling required.
+> Harbor is not notarized. The upstream driver source and notices accompany the
+> app; its unresolved build-ID mismatch is disclosed in the
+> [source audit](docs/DRIVER-SOURCE-VERIFICATION.md).
+
+## Download and use
+
+1. Download `Harbor-0.3.0-beta.2-macOS-arm64.zip` from the
+   [beta release](https://github.com/Gaurav1996/harbor/releases/tag/v0.3.0-beta.2).
+2. Unzip it and move **Harbor.app** to your Applications folder, then open it.
+3. For NTFS, choose **⋯ → NTFS writing support → Enable NTFS writing…** and turn
+   on **TT NTFS Native** in macOS File System Extensions.
+4. Reconnect the drive, select your files/folders and a destination, then **Copy & verify**.
+
+macOS may block first launch because Harbor is ad-hoc signed rather than
+notarized. Review the app's source and signing status before choosing to run
+this beta. Harbor does not ask you to disable Gatekeeper or lower Startup Security.
 
 ## Why an NTFS drive looks read-only on a Mac
 
 NTFS is a filesystem, not an inherently read-only file format. macOS’s built-in
 NTFS support normally lets you read existing files without providing ordinary
 write access. [Apple describes this limitation](https://support.apple.com/101830).
-Harbor’s local candidate supplies that missing writing capability
+Harbor supplies that missing writing capability
 through the included, independently signed TT NTFS Native FSKit component.
 You approve the component in macOS Settings; Harbor handles its preparation.
 
@@ -54,7 +68,7 @@ stay read-only. Harbor does not bypass those protections or repair the disk.
 
 ## App and NTFS support
 
-The local 0.3 candidate contains the unchanged [TT NTFS Native 0.4.1](https://github.com/dr-kbadawi/ttntfs/releases/tag/v0.4.1)
+The 0.3 beta contains the unchanged [TT NTFS Native 0.4.1](https://github.com/dr-kbadawi/ttntfs/releases/tag/v0.4.1)
 component, signed by TechTag GmbH. There is no separate download or driver picker
 in the app. Harbor validates the included component, registers its extension
 metadata, and opens macOS File System Extensions for the user's approval.
@@ -75,7 +89,7 @@ See [using Harbor and troubleshooting](docs/USER-GUIDE.md).
 ## Build from source
 
 Requirements: an Apple Silicon Mac, macOS 26+, **Xcode 27 with the macOS 27 SDK**,
-Swift 6, and Python 3. The deployment target is macOS 26; the current source also
+Swift 6, Python 3, and an authenticated GitHub CLI (`gh`). The deployment target is macOS 26; the current source also
 references a macOS 27 FSKit settings API inside an availability check. CI uses the
 Xcode 27 runner. Compatibility across all supported OS versions is not established.
 
@@ -90,23 +104,26 @@ The Swift app/core have no downloaded package dependencies. Building or testing
 those targets does not install or enable a driver. SwiftPM's `--disable-sandbox`
 affects its build process; the packaged app retains the macOS App Sandbox.
 
-To package a **private local test candidate**:
+To package a local copy:
 
 ```sh
 bash scripts/build-app.sh
 open dist/Harbor.app
 ```
 
-The packaging script fetches/caches the pinned official driver DMG, checks its
-SHA-256, version, vendor signatures and Gatekeeper assessment, and includes the
-provider unchanged. This network access occurs at build time. The resulting app
+The packaging script fetches/caches the pinned official driver DMG and upstream
+release-tag source archive. It checks hashes, version, vendor signatures and
+Gatekeeper assessment, and includes the unchanged provider plus source/notices. This network access occurs at build time. The resulting app
 works offline and has no network entitlement. The included extension retains its
 vendor signing profile; no paid Apple account is needed to build Harbor's wrapper
 locally. Harbor itself is ad-hoc signed by default and is **not notarized**.
 A downloaded build can show macOS first-open warnings.
 
-The script refuses `HARBOR_PUBLIC_RELEASE=1` while provider source verification is
-unresolved. Do not upload a locally built combined app as a public release.
+The complete upstream-designated driver source and its notices are mandatory
+packaging inputs and are carried inside the app. Independent source-to-binary
+identity remains unconfirmed because the embedded commit differs; the beta
+does not claim that uncertainty has been resolved. See the
+[release/source status](docs/OPEN-SOURCE.md).
 
 ## Privacy
 

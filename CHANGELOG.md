@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.3.0-beta.2 — 10 November 2026
+
+First public app beta for Apple Silicon, macOS 26+.
+
+- NTFS-enabled Harbor.app download with no separate driver download or compilation.
+- Complete upstream-designated TT NTFS Native 0.4.1 source archive and original
+  notices included inside the app and alongside the download.
+- Published source audit, unresolved embedded-commit difference and beta/signing
+  limitations remain explicit. No independent source-to-binary verification claim.
+- Transfer executable behavior is unchanged from the tested local 0.3 candidate.
+- Harbor remains ad-hoc signed and is not notarized.
+
 ## 0.3.0 source beta — 10 November 2026
 
 First public source snapshot. No public combined app binary is released.
